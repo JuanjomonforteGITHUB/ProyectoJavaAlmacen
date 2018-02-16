@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 15-02-2018 a las 18:36:04
+-- Tiempo de generación: 16-02-2018 a las 19:59:25
 -- Versión del servidor: 10.1.26-MariaDB
 -- Versión de PHP: 7.1.9
 
@@ -41,7 +41,7 @@ INSERT INTO `tbl_categoria` (`categoria_id`, `categoria_nom`) VALUES
 (1, 'Ojos de buey'),
 (2, 'Bombillas LED'),
 (3, 'Lamparas'),
-(4, 'Bombillas color'),
+(4, 'Bombillas color LED'),
 (5, 'Focos');
 
 -- --------------------------------------------------------
@@ -99,6 +99,29 @@ CREATE TABLE `tbl_lloc` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `tbl_persona`
+--
+
+CREATE TABLE `tbl_persona` (
+  `Persona_id` int(11) NOT NULL,
+  `Persona_Nom` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
+  `Persona_Cognom` varchar(40) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Persona_Correu` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Persona_Username` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `Persona_Contra` varchar(20) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `tbl_persona`
+--
+
+INSERT INTO `tbl_persona` (`Persona_id`, `Persona_Nom`, `Persona_Cognom`, `Persona_Correu`, `Persona_Username`, `Persona_Contra`) VALUES
+(1, 'David', 'Aznar', 'david.aznar@gmail.com', 'daznar', '12345'),
+(2, 'Juanjo', 'Monforte', 'juanjo.monforte@gmail.com', 'jmonforte', '12345');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `tbl_producte`
 --
 
@@ -110,6 +133,17 @@ CREATE TABLE `tbl_producte` (
   `prod_descripcio` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `prod_descompte` int(3) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `tbl_producte`
+--
+
+INSERT INTO `tbl_producte` (`prod_id`, `prod_nom`, `prod_foto`, `serie_id`, `prod_descripcio`, `prod_descompte`) VALUES
+(1, 'Foco RONDOO 1 up blanco', 'foco-rondoo-1-up-blanco.jpg', 5, 'Tamaño Total: altura 12,5cm,diámetro 10cm // Placa de montaje en techo: diámetro 10cm //', 5),
+(2, 'Ojo de Buey Aluminio circular', 'OjodeBueyAluminiocircular.jpg', 1, 'Marca: Miño // Foco Empotrable aluminio extrusionado basculante y giratorio.', 0),
+(3, 'Bombilla LED E27 C37 5W', 'bombilla-led-e27-c37-5w.jpg', 2, 'Perfecta para sustituir a las antiguas bombillas incandescentes tipo vela de hasta 35W.', 50),
+(4, 'Bombilla LED E27 RGB 5W', 'bombilla-led-e27-rgb-5w.jpg', 3, 'Opción perfecta si deseamos una bombilla que nos permita variar la luz que emite en color', 25),
+(5, 'Lámpara de araña LED Gracia', 'lampara-arana-led-gracia-20w-schuller.jpg', 4, 'Diseño en forma de araña con cinco puntos de iluminación, fabricación en resina y metal', 30);
 
 -- --------------------------------------------------------
 
@@ -141,7 +175,11 @@ CREATE TABLE `tbl_serie` (
 --
 
 INSERT INTO `tbl_serie` (`serie_id`, `serie_nom`, `categoria_id`) VALUES
-(1, 'GU10', 1);
+(1, 'GU10', 1),
+(2, 'E27', 2),
+(3, 'E27', 4),
+(4, 'E14', 3),
+(5, 'GU5', 5);
 
 --
 -- Índices para tablas volcadas
@@ -181,6 +219,12 @@ ALTER TABLE `tbl_estoc`
 --
 ALTER TABLE `tbl_lloc`
   ADD PRIMARY KEY (`lloc_id`);
+
+--
+-- Indices de la tabla `tbl_persona`
+--
+ALTER TABLE `tbl_persona`
+  ADD PRIMARY KEY (`Persona_id`);
 
 --
 -- Indices de la tabla `tbl_producte`
@@ -237,10 +281,16 @@ ALTER TABLE `tbl_lloc`
   MODIFY `lloc_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `tbl_persona`
+--
+ALTER TABLE `tbl_persona`
+  MODIFY `Persona_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT de la tabla `tbl_producte`
 --
 ALTER TABLE `tbl_producte`
-  MODIFY `prod_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `prod_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `tbl_proveidor`
@@ -252,7 +302,7 @@ ALTER TABLE `tbl_proveidor`
 -- AUTO_INCREMENT de la tabla `tbl_serie`
 --
 ALTER TABLE `tbl_serie`
-  MODIFY `serie_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `serie_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Restricciones para tablas volcadas

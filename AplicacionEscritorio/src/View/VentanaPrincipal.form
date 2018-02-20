@@ -44,7 +44,10 @@
                       <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
                       <Component id="jbAltaUsuario" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
-                      <Component id="jbViewArticulos" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jbCerrarSesion" max="32767" attributes="0"/>
+                          <Component id="jbViewArticulos" max="32767" attributes="0"/>
+                      </Group>
                       <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
                       <Component id="jbViewOfertas" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -64,7 +67,9 @@
                   <Component id="jbViewArticulos" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jbViewOfertas" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="164" max="32767" attributes="0"/>
+              <EmptySpace pref="111" max="32767" attributes="0"/>
+              <Component id="jbCerrarSesion" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -98,6 +103,14 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Visualizar Ofertas"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jbCerrarSesion">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="CERRAR SESI&#xd3;N"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbCerrarSesionActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

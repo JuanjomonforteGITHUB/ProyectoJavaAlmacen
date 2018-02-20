@@ -32,6 +32,14 @@ public class AltaUser extends javax.swing.JFrame {
         this.jlErrorNombre.setVisible(false);
         this.jlErrorPassword.setVisible(false);
     }
+    //Funcion LimpiarCampos
+    private void limpiarCampos() {
+        this.jtNombre.setText("");
+        this.jtApellidos.setText("");
+        this.jtCorreo.setText("");
+        this.jtUsuario.setText("");
+        this.jtPassword.setText("");
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -143,16 +151,16 @@ public class AltaUser extends javax.swing.JFrame {
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jLabel2)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(jtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jbCrear, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jlErrorNombre)
                             .addComponent(jlErrorPassword)
-                            .addComponent(jlErrorUsuario)
-                            .addComponent(jbInicio)))
+                            .addComponent(jlErrorUsuario)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(49, 49, 49)
-                        .addComponent(jbCrear, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap()
+                        .addComponent(jbInicio)))
                 .addContainerGap(51, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -183,11 +191,11 @@ public class AltaUser extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(jtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jlErrorPassword))
-                .addGap(31, 31, 31)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbCrear)
-                    .addComponent(jbInicio))
-                .addGap(47, 47, 47))
+                .addGap(18, 18, 18)
+                .addComponent(jbCrear)
+                .addGap(26, 26, 26)
+                .addComponent(jbInicio)
+                .addContainerGap())
         );
 
         pack();
@@ -222,10 +230,11 @@ public class AltaUser extends javax.swing.JFrame {
             String nuevouserPassword = this.jtPassword.getText();
 
             CrearUserController crearUsuario = new CrearUserController();
-            try {
-                crearUsuario.crearUsuarioController(nuevouserNombre, nuevouserApellidos, nuevouserCorreo, nuevouserUsuario, nuevouserPassword);
-            } catch (SQLException ex) {
-                Logger.getLogger(AltaUser.class.getName()).log(Level.SEVERE, null, ex);
+            boolean creado = crearUsuario.crearUsuarioController(nuevouserNombre, nuevouserApellidos, nuevouserCorreo, nuevouserUsuario, nuevouserPassword);
+            
+            if (creado) {
+                //todo en blanco
+                limpiarCampos();
             }
         }
 

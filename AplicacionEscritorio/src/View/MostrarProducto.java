@@ -204,6 +204,11 @@ public class MostrarProducto extends javax.swing.JFrame {
         jLabel9.setText("Categoria:");
 
         jcbCategorias.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jcbCategorias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbCategoriasActionPerformed(evt);
+            }
+        });
 
         jbEditar.setText("EDITAR");
         jbEditar.addActionListener(new java.awt.event.ActionListener() {
@@ -464,6 +469,8 @@ public class MostrarProducto extends javax.swing.JFrame {
         this.jbMenu.setEnabled(false);
         this.jbEliminar.setEnabled(false);
         this.jbNuevo.setEnabled(false);
+        this.jbGuardar.setEnabled(true);
+        this.jbEditar.setEnabled(false);
         
         this.jtNombre.setEditable(true);
         this.jtSerie.setEditable(true);
@@ -490,16 +497,15 @@ public class MostrarProducto extends javax.swing.JFrame {
 
     private void jbNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNuevoActionPerformed
         // BOTON NUEVO
-        this.jtNombre.setText("");
-        this.jtSerie.setText("");
-        this.jtPrecio.setText("");
-        this.jtDescuento.setText("");
-        this.jtStockMinimo.setText("");
-        this.jtStockActual.setText("");
-        this.jtDescripcion.setText("");
-        this.jtTablaProductos.clearSelection();
+        dispose();
+        AltaProducto ventanaAltaProducto = new AltaProducto();
+        ventanaAltaProducto.setVisible(true);
 
     }//GEN-LAST:event_jbNuevoActionPerformed
+
+    private void jcbCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbCategoriasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcbCategoriasActionPerformed
 
     /**
      * @param args the command line arguments

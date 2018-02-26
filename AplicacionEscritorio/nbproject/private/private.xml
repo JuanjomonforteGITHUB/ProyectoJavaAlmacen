@@ -4,13 +4,10 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/4784.joan23/Documents/NetBeansProjects/Proyecto5JavaAlmacenEscritorio/src/View/MostrarProducto.java</file>
-            <file>file:/C:/Users/4784.joan23/Documents/NetBeansProjects/Proyecto5JavaAlmacenEscritorio/src/Model/ListadoInventario.java</file>
-            <file>file:/C:/Users/4784.joan23/Documents/NetBeansProjects/Proyecto5JavaAlmacenEscritorio/src/View/AltaUser.java</file>
+            <file>file:/C:/Users/4784.joan23/Documents/NetBeansProjects/Proyecto5JavaAlmacenEscritorio/src/View/EscogerFoto.java</file>
             <file>file:/C:/Users/4784.joan23/Documents/NetBeansProjects/Proyecto5JavaAlmacenEscritorio/src/View/AltaProducto.java</file>
-            <file>file:/C:/Users/4784.joan23/Documents/NetBeansProjects/Proyecto5JavaAlmacenEscritorio/src/Controller/CrearUserController.java</file>
             <file>file:/C:/Users/4784.joan23/Documents/NetBeansProjects/Proyecto5JavaAlmacenEscritorio/src/Controller/ProductoController.java</file>
-            <file>file:/C:/Users/4784.joan23/Documents/NetBeansProjects/Proyecto5JavaAlmacenEscritorio/src/Model/vistaProducto.java</file>
-            <file>file:/C:/Users/4784.joan23/Documents/NetBeansProjects/Proyecto5JavaAlmacenEscritorio/src/Controller/CrearProductoController.java</file>
+            <file>file:/C:/Users/4784.joan23/Documents/NetBeansProjects/Proyecto5JavaAlmacenEscritorio/src/Controller/EliminarProductoController.java</file>
         </group>
     </open-files>
 </project-private>

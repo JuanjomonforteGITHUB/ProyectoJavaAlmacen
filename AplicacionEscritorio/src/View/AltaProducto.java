@@ -6,21 +6,42 @@
 package View;
 
 import Controller.CrearProductoController;
+import java.awt.Image;
+import java.io.File;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
  * @author 4784.joan23
  */
 public class AltaProducto extends javax.swing.JFrame {
-
+    CrearProductoController crearProducto = new CrearProductoController();
     /**
      * Creates new form AltaProducto
      */
     public AltaProducto() {
         initComponents();
-
+        crearProducto.llenarComboCategoria(jcCategoria);
+        crearProducto.llenarComboSerie(jcSerie);
+        crearProducto.llenarComboLugar(jcNumBloque,jcNumeroPasillo,jcNumEstanteria);
+    }
+    
+    //Funcion LimpiarCampos
+    private void limpiarCampos() {
+        this.jtNuevoNombre.setText("");
+        this.jtDescuento.setText("");
+        this.jtPrecio.setText("");
+        this.jtStockMinimo.setText("");
+        this.jtStockActual.setText("");
+        this.jtStockMaximo.setText("");
+        this.jtDescripcion.setText("");
     }
 
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -89,7 +110,18 @@ public class AltaProducto extends javax.swing.JFrame {
 
         jLabel8.setText("Categoria:");
 
+        jtPrecio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtPrecioActionPerformed(evt);
+            }
+        });
+
         jcCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jcCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcCategoriaActionPerformed(evt);
+            }
+        });
 
         jcNumeroPasillo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -139,6 +171,11 @@ public class AltaProducto extends javax.swing.JFrame {
         );
 
         jbSubirFoto.setText("SUBIR FOTO");
+        jbSubirFoto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbSubirFotoActionPerformed(evt);
+            }
+        });
 
         jcSerie.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -184,7 +221,7 @@ public class AltaProducto extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel8)
                         .addGap(18, 18, 18)
-                        .addComponent(jcCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jcCategoria, 0, 115, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addGap(18, 18, 18)
@@ -201,7 +238,7 @@ public class AltaProducto extends javax.swing.JFrame {
                         .addComponent(jLabel6)
                         .addGap(18, 18, 18)
                         .addComponent(jtStockMaximo, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jbSubirFoto, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -254,8 +291,7 @@ public class AltaProducto extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel7)
                                 .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                        .addGap(0, 0, 0))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -299,21 +335,56 @@ public class AltaProducto extends javax.swing.JFrame {
     private void jbCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCrearActionPerformed
         // BOTON CREAR
         String prod_nom = this.jtNuevoNombre.getText();
-        String prod_foto = this.jtNuevoNombre.getText();
-        String prod_descripcio = this.jtNuevoNombre.getText();
-        String prod_descompte = this.jtNuevoNombre.getText();
-        String prod_preu = this.jtNuevoNombre.getText();
-        String serie_nom = this.jtNuevoNombre.getText();
-        String num_bloc = this.jtNuevoNombre.getText();
-        String num_passadis = this.jtNuevoNombre.getText();
-        String num_lleixa = this.jtNuevoNombre.getText();
-        String estoc_q_min = this.jtNuevoNombre.getText();
-        String estoc_q_actual = this.jtNuevoNombre.getText();
-        String estoc_q_max = this.jtNuevoNombre.getText();
-        String categoria_nom = this.jtNuevoNombre.getText();
+        //String prod_foto = this.jtNuevoNombre.getText();
+        String prod_descripcio = this.jtDescripcion.getText();
+        int prod_descompte = Integer.valueOf(this.jtDescuento.getText());
+        float prod_preu = Float.valueOf(this.jtPrecio.getText());
+        String serie_nom = String.valueOf(this.jcSerie.getSelectedItem());
+        String num_bloc = String.valueOf(this.jcNumBloque.getSelectedItem());
+        String num_passadis = String.valueOf(this.jcNumeroPasillo.getSelectedItem());
+        String num_lleixa = String.valueOf(this.jcNumEstanteria.getSelectedItem());
+        int estoc_q_min = Integer.valueOf(this.jtStockMinimo.getText());
+        int estoc_q_actual = Integer.valueOf(this.jtStockActual.getText());
+        int estoc_q_max = Integer.valueOf(this.jtStockMaximo.getText());
+        String categoria_nom = String.valueOf(this.jcCategoria.getSelectedItem());
         CrearProductoController crearProducto = new CrearProductoController();
-        crearProducto.crearProductoController(prod_nom, prod_foto, prod_descripcio, prod_descompte, prod_preu, serie_nom, num_bloc, num_passadis , num_lleixa, estoc_q_min, estoc_q_actual, estoc_q_max, categoria_nom);
+        boolean creado = crearProducto.crearProductoController(prod_nom, prod_descripcio, prod_descompte, prod_preu, serie_nom, num_bloc, num_passadis , num_lleixa, estoc_q_min, estoc_q_actual, estoc_q_max);
+        
+        if (creado) {
+            //todo en blanco
+            limpiarCampos();
+        }
     }//GEN-LAST:event_jbCrearActionPerformed
+
+    private void jcCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcCategoriaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcCategoriaActionPerformed
+
+    private void jtPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtPrecioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtPrecioActionPerformed
+    
+    File fichero;
+    private void jbSubirFotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSubirFotoActionPerformed
+        // BOTON CARGAR FOTO
+        int resultado;
+        EscogerFoto ventana = new EscogerFoto();
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("JPG y PNG","jpg","png");
+        ventana.jfchCargarfoto.setFileFilter(filtro);
+        resultado = ventana.jfchCargarfoto.showOpenDialog(null);
+        if (JFileChooser.APPROVE_OPTION == resultado){
+        fichero = ventana.jfchCargarfoto.getSelectedFile();
+        try{
+            ImageIcon icon = new ImageIcon(fichero.toString());
+            Icon icono = new ImageIcon(icon.getImage().getScaledInstance(jlFoto.getWidth(), jlFoto.getHeight(), Image.SCALE_DEFAULT));
+            jlFoto.setText(null);
+            jlFoto.setIcon(icono);
+        }catch(Exception ex){
+            JOptionPane.showMessageDialog(null, "Error abriendo la imagen "+ ex); 
+        }
+    
+ }
+    }//GEN-LAST:event_jbSubirFotoActionPerformed
 
     /**
      * @param args the command line arguments
